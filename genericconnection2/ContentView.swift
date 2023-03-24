@@ -16,6 +16,18 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear {
+            Task {
+                do{
+                    let data = try await  requestAmiiboList()
+                    data.amiibo.forEach { amiibo in
+                        print(amiibo.character)
+                    }
+                } catch {
+                    
+                }
+            }
+        }
     }
 }
 
